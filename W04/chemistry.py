@@ -124,20 +124,15 @@ def compute_molar_mass(formula, periodic_table):
     return molar_mass
 
 def main():
-    # Crear la tabla periódica
     periodic_table = make_periodic_table()
 
-    # Pedir al usuario la fórmula química y la masa
     formula = input("Ingrese la fórmula química de la sustancia: ")
     mass = float(input("Ingrese la masa de la muestra en gramos: "))
 
-    # Calcular la masa molar
     molar_mass = compute_molar_mass(formula, periodic_table)
 
-    # Calcular el número de moles
     moles = mass / molar_mass
 
-    # Mostrar resultados
     print(f"Masa molar de {formula}: {molar_mass:.5f} g/mol")
     print(f"Número de moles en la muestra: {moles:.5f} mol")
 
