@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 
 def read_dictionary(filename, key_column_index):
     """Read the contents of a CSV file into a compound
@@ -17,62 +18,66 @@ def read_dictionary(filename, key_column_index):
     try:
         with open(filename, mode='r') as file:
             reader = csv.reader(file)
-            next(reader)  # Skip header row
+            next(reader)
 
             for row in reader:
-                key = row[key_column_index]  # Product number
-                value = row  # Product details (number, name, price)
+                key = row[key_column_index] 
+                value = row 
                 products_dict[key] = value
 
     except FileNotFoundError:
-        print(f"Error: El archivo {filename} no se encuentra en el directorio actual.")
+        print(f"Error: The file {filename} was not found in the current directory.")
+        return {}
     
     return products_dict
 
 def main():
-    # Read products into a dictionary
     products_dict = read_dictionary("products.csv", 0)
 
-    # Check if products were loaded correctly
     if not products_dict:
-        print("No se pudieron cargar los productos. Verifique el archivo products.csv.")
+        print("Failed to load products. Please check the products.csv file.")
         return
 
-    # Print all products (optional for debugging)
     print("All Products")
     print(products_dict)
 
-    # Process the request.csv file
+    subtotal = 0
+
     print("\nRequested Items")
     try:
         with open("request.csv", mode='r') as file:
             reader = csv.reader(file)
-            next(reader)  # Skip header row
+            next(reader)  
             
             for row in reader:
-                product_number = row[0]  # Product number from request.csv
-                quantity = int(row[1])   # Quantity of the product
-                
-                # Look up the product details in the products_dict
+                product_number = row[0]  
+                quantity = int(row[1])   
+
                 product_details = products_dict.get(product_number)
                 if product_details:
-                    product_name = product_details[1]  # Product name
-                    price = float(product_details[2])  # Product price
-                    
-                    # Print the item information
-                    print(f"{product_name}: {quantity} @ {price:.2f}")
-                    
-                    # Optionally calculate and print the total for the item
+                    product_name = product_details[1] 
+                    price = float(product_details[2])  
+
                     total = quantity * price
+                    subtotal += total
+                    print(f"{product_name}: {quantity} @ {price:.2f}")
                     print(f"Total: {total:.2f}")
                 else:
-                    print(f"Product {product_number} no encontrado en el inventario.")
+                    print(f"Product {product_number} not found in the inventory.")
     except FileNotFoundError:
-        print("Error: El archivo request.csv no se encuentra en el directorio actual.")
+        print("Error: The file request.csv was not found in the current directory.")
+        return
+
+    sales_tax = subtotal * 0.06
+    grand_total = subtotal + sales_tax
+
+    print("\nReceipt Summary")
+    print(f"Subtotal: {subtotal:.2f}")
+    print(f"Sales Tax (6%): {sales_tax:.2f}")
+    print(f"Grand Total: {grand_total:.2f}")
+
+    print(f"\nDate and Time: {datetime.now():%A, %B %d, %Y %I:%M %p}")
+    print("Thank you for shopping with us!")
 
 if __name__ == "__main__":
     main()
-
-
-
-
