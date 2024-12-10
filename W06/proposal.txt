@@ -1,0 +1,62 @@
+CSE 111 Proposal for a Student Chosen Program
+
+    (This is a proposal. All proposals are written with our best
+    knowledge at the beginning of a project. As we progress from the
+    beginning to the end of a project, we gain more knowledge, and we
+    change some of our proposed ideas. This is part of completing any
+    project and is fine.  However, we still must write a proposal so
+    that our teachers or supervisors know what we intend to do. Please
+    answer each of the following questions to the best of your
+    knowledge.)
+
+1. What is the title of your program?
+
+Sports Tournament Simulator
+
+2. What real-world problem will your program address or help to solve?
+
+The program automates the organization and management of sports tournaments, helping users create structured events with features such as league standings, elimination rounds, and rules customization (e.g., specific rules like those in the Ziion League). It also simplifies result tracking and allows exporting data in a professional format (PDF).
+
+3. What will you learn from developing this program?
+
+Advanced data handling and management in Python.
+Working with structured tournament logic, including algorithms for creating match schedules and calculating rankings.
+Integrating third-party libraries for PDF generation and data storage.
+Best practices for writing modular and reusable code.
+Techniques for exporting data in user-friendly formats.
+
+4. What Python modules will your program use?
+
+csv: To handle data export and import for tournament history.
+datetime: For managing match schedules and dates.
+random: To create randomized matchups or scenarios.
+fpdf: To generate PDFs with tournament results and standings.
+pytest: To ensure all functions are tested and work as intended.
+tkinter (optional): For building a graphical user interface.
+
+5. List the names of functions you will need:
+
+create_teams(): Initializes the teams for the tournament.
+generate_schedule(teams): Creates the schedule for matches based on the tournament type (round-robin, knockout, etc.).
+record_match_result(match, result): Records the outcome of a match and updates standings.
+calculate_standings(teams): Calculates rankings based on the tournament results.
+generate_bracket(teams): Generates an elimination bracket for knockout stages.
+export_results_to_csv(results): Saves the tournament data to a CSV file.
+export_results_to_pdf(results): Generates a PDF report of the tournament standings and results.
+load_tournament_history(file_path): Loads past tournaments from a CSV file.
+apply_custom_rules(rules): Applies special rules (e.g., Ziion League rules) to the tournament logic.
+display_menu(): Provides a user interface or menu for interacting with the program.
+
+6. List the names of the test functions you will write:
+
+test_create_teams(): Ensures team initialization works as expected.
+test_generate_schedule(): Validates that the schedule is generated correctly based on the input teams.
+test_record_match_result(): Tests that match results are recorded and update standings properly.
+test_calculate_standings(): Confirms standings are calculated accurately.
+test_generate_bracket(): Verifies that the elimination bracket is correctly formed.
+test_export_results_to_csv(): Checks if results are correctly saved in CSV format.
+test_export_results_to_pdf(): Ensures that the PDF report is generated without errors.
+test_load_tournament_history(): Validates the loading of historical data.
+test_apply_custom_rules(): Confirms that the custom rules are applied to the tournament logic.
+Let me know if you would like a deeper dive into any part of this plan or if you'd like code snippets for specific functions!
+
